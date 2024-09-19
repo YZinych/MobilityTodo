@@ -41,15 +41,21 @@ Start the application and database services in detached mode:
 docker-compose up -d
 ```
 
-## 5. Install Laravel Dependencies
+## 5. Enter the app container
 
-Once the services are up, install Laravel's dependencies:
+```bash
+docker exec -it todo_laravel_app bash
+```
+
+## 6. Install Laravel Dependencies
+
+Install Laravel's dependencies:
 
 ```bash
 composer install
 ```
 
-## 6. Generate Laravel Application Key
+## 7. Generate Laravel Application Key
 
 Generate the Laravel application key to secure your application:
 
@@ -57,18 +63,13 @@ Generate the Laravel application key to secure your application:
 php artisan key:generate
 ```
 
-## 7. Run Database Migrations
+## 8. Run Database Migrations
 
-Enter the app container and run the migrations to set up the database schema:
-
-```bash
-docker exec -it todo_laravel_app bash
-```
 ```bash
 php artisan migrate
 ```
 
-## 8. Check the Database
+## 9. Check the Database
 
 - Make sure port `7761` is available on your machine.
 - To ensure the database is properly configured, access the database check page using your `.env` credentials:
@@ -77,7 +78,7 @@ php artisan migrate
 http://localhost:7761/index.php
 ```
 
-## 9. Access the Web Application
+## 10. Access the Web Application
 
 - Make sure port `8080` is available on your machine.
 - Finally, access the Laravel application in your browser:
