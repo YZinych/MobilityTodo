@@ -15,6 +15,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_mysql mbstring gd xml \
     && docker-php-ext-configure gd --with-freetype --with-jpeg
 
+# Install Node.js v10
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    apt-get install -y nodejs
+
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --version=2.2.0 && \
     mv composer.phar /usr/local/bin/composer
@@ -31,6 +35,9 @@ RUN mkdir -p /var/www && chown -R www:www /var/www
 USER www
 WORKDIR /var/www
 COPY . /var/www
+
+# npm install and run
+RUN npm install
 
 USER www
 EXPOSE 9000
