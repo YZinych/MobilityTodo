@@ -36,10 +36,6 @@ USER www
 WORKDIR /var/www
 COPY . /var/www
 
-# npm install and run
-RUN chown -R www:www /var/www && \
-    npm install
-
 USER www
 EXPOSE 9000
 CMD ["php-fpm"]

@@ -69,7 +69,17 @@ php artisan key:generate
 php artisan migrate
 ```
 
-## 9. Check the Database
+## 9. Install Node modules and prepare Assets
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+
+## 10. Check the Database
 
 - Make sure port `7761` is available on your machine.
 - To ensure the database is properly configured, access the database check page using your `.env` credentials:
@@ -78,7 +88,7 @@ php artisan migrate
 http://localhost:7761/index.php
 ```
 
-## 10. Access the Web Application
+## 11. Access the Web Application
 
 - Make sure port `8080` is available on your machine.
 - Finally, access the Laravel application in your browser:
