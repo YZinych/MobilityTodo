@@ -37,7 +37,8 @@ WORKDIR /var/www
 COPY . /var/www
 
 # npm install and run
-RUN npm install
+RUN chown -R www:www /var/www && \
+    npm install
 
 USER www
 EXPOSE 9000
