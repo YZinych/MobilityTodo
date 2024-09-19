@@ -1,10 +1,6 @@
-# Використовуємо офіційний образ PHP 7.1 FPM
 FROM php:7.1-fpm
 
-# Встановлюємо робочу директорію
-WORKDIR /var/www
-
-# Встановлюємо системні залежності та розширення PHP
+# install PHP dependencies
 RUN apt-get update && apt-get install -y \
     mc \
     libpng-dev \
@@ -15,23 +11,31 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libonig-dev \
-    libmcrypt-dev \
     libxml2-dev \
     && docker-php-ext-install pdo pdo_mysql mbstring gd xml \
     && docker-php-ext-configure gd --with-freetype --with-jpeg
 
-# Завантажуємо і встановлюємо Composer 2.2 LTS
+# install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --version=2.2.0 && \
     mv composer.phar /usr/local/bin/composer
 
-# Встановлюємо Laravel через Composer у піддиректорію "laravel"
-# RUN composer create-project --prefer-dist laravel/laravel . "5.3.*"
+# Create www user & group and set permissions
+ARG UID=1000
+ARG GID=1000
 
-# Встановлюємо права для правильного доступу до файлів
-#RUN chown -R www-data:www-data /var/www/laravel \
-#    && chmod -R 755 /var/www/laravel
+RUN groupadd -g ${GID} www \
+    && useradd -u ${UID} -g www -m www
+RUN mkdir -p /var/www && chown -R www:www /var/www
 
-# Порт, який буде використовувати PHP-FPM
+# copy workdir www
+USER www
+WORKDIR /var/www
+COPY . /var/www
+
+# install Laravel dependencies
+USER root
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+USER www
 EXPOSE 9000
-
 CMD ["php-fpm"]

@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.8'
 
 services:
   app:
@@ -33,17 +33,14 @@ services:
     image: mysql:5.7
     container_name: todo_mysql_db
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: tododb
-      MYSQL_USER: todouser
-      MYSQL_PASSWORD: secret
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     ports:
       - "3306:3306"
     volumes:
       - ./_docker/mysql/data/db:/var/lib/mysql
       - ./_docker/mysql/conf:/etc/mysql/conf.d
+    env_file:
+      - ./docker-db.env
     networks:
       - laravel
 
@@ -65,4 +62,4 @@ networks:
     driver: bridge
 
 volumes:
-  dbdata:
+  app_data:
