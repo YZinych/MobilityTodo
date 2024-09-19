@@ -10,18 +10,20 @@ git clone git@github.com:YZinych/MobilityTodo.git .
 
 ## 2. Configure Environment Variables
 
-Copy the environment variable files
+Copy environment variables for Laravel
 
 ```bash
-# Copy environment variables for Laravel
 cp .env.example .env
+```
 
-# Copy environment variables for Docker
+Copy environment variables for Docker
+
+```bash
 cp docker-db.env.example docker-db.env
 ```
 
 ### Optional:
-Update the database credentials in `.env` and `docker-db.env` files to match your database setup
+Update database settings in `.env` and `docker-db.env` files to prevent using demo credentials
 
 ## 3. Build the Docker Images
 
@@ -61,6 +63,8 @@ Enter the app container and run the migrations to set up the database schema:
 
 ```bash
 docker exec -it todo_laravel_app bash
+```
+```bash
 php artisan migrate
 ```
 
