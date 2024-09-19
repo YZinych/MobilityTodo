@@ -1,0 +1,21 @@
+.navbarTest {
+  background-color: #333;
+  padding: 10px;
+
+  .nav-item {
+    color: white;
+    margin-right: 15px;
+
+    &:hover {
+      color: #ddd;
+    }
+
+    .dropdown {
+      display: none;
+
+      &:hover {
+        display: block;
+      }
+    }
+  }
+}

@@ -69,14 +69,10 @@ php artisan key:generate
 php artisan migrate
 ```
 
-## 9. Install Node modules and prepare Assets
+## 9. Optional. Install Node modules and prepare Assets
 
 ```bash
 npm install
-```
-
-```bash
-npm run dev
 ```
 
 ## 10. Check the Database
