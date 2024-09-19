@@ -35,6 +35,7 @@ COPY . /var/www
 # install Laravel dependencies
 USER root
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN php artisan key:generate
 
 USER www
 EXPOSE 9000

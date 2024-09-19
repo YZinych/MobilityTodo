@@ -1,40 +1,86 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# MobilityTodo - Project Setup Instructions
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## 1. Clone the Repository
 
-## About Laravel
+To begin, clone the repository into your project directory:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+```bash
+git clone git@github.com:YZinych/MobilityTodo.git .
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 2. Configure Environment Variables
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+Copy the environment variable files
 
-## Learning Laravel
+```bash
+# Copy environment variables for Laravel
+cp .env.example .env
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+# Copy environment variables for Docker
+cp docker-db.env.example docker-db.env
+```
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+### Optional:
+Update the database credentials in `.env` and `docker-db.env` files to match your database setup
 
-## Contributing
+## 3. Build the Docker Images
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Build the Docker images for the application without using the cache:
 
-## Security Vulnerabilities
+```bash
+docker-compose build --no-cache
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## 4. Start the Services
 
-## License
+Start the application and database services in detached mode:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+```bash
+docker-compose up -d
+```
+
+## 5. Install Laravel Dependencies
+
+Once the services are up, install Laravel's dependencies:
+
+```bash
+composer install
+```
+
+## 6. Generate Laravel Application Key
+
+Generate the Laravel application key to secure your application:
+
+```bash
+php artisan key:generate
+```
+
+## 7. Run Database Migrations
+
+Enter the app container and run the migrations to set up the database schema:
+
+```bash
+docker exec -it todo_laravel_app bash
+php artisan migrate
+```
+
+## 8. Check the Database
+
+- Make sure port `7761` is available on your machine.
+- To ensure the database is properly configured, access the database check page using your `.env` credentials:
+
+```text
+http://localhost:7761/index.php
+```
+
+## 9. Access the Web Application
+
+- Make sure port `8080` is available on your machine.
+- Finally, access the Laravel application in your browser:
+
+```text
+http://localhost:8080/
+```
+
+---
+
