@@ -6,5 +6,6 @@
 Homestead.json
 Homestead.yaml
 .env
+docker-db.env
 /_docker/mysql/data
 
