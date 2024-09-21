@@ -3,8 +3,9 @@
 ## Introduction
 MobilityTodo is a simple web application for managing tasks, offering basic functionality such as:
 
-User registration and login
-Creating, editing, removing, and toggling tasks
+- User registration and login
+- Creating, editing, removing, and toggling tasks
+
 The app is developed using a REST API, with jQuery handling the front-end communication and Laravel managing the back-end.
 
 Technology Stack:
