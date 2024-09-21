@@ -101,7 +101,7 @@ http://localhost:7761/index.php
 http://localhost:8080/
 ```
 
-## 11. Optional. Install Node modules and prepare Assets
+## 11. Optional. Install Node modules
 
 ```bash
 npm install
