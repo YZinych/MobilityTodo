@@ -25,8 +25,8 @@ class Task extends Model
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'description' => $this->description,
+            'title' => htmlspecialchars($this->title, ENT_QUOTES, 'UTF-8'),
+            'description' => htmlspecialchars($this->description, ENT_QUOTES, 'UTF-8'),
             'status' => $this->status,
             'created_at' => $this->created_at->format('jS M Y, h:i A'),
         ];
