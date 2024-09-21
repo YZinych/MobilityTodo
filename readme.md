@@ -1,5 +1,18 @@
 # MobilityTodo - Project Setup Instructions
 
+## Introduction
+MobilityTodo is a simple web application for managing tasks, offering basic functionality such as:
+
+User registration and login
+Creating, editing, removing, and toggling tasks
+The app is developed using a REST API, with jQuery handling the front-end communication and Laravel managing the back-end.
+
+Technology Stack:
+- Docker (PHP 7.1, MySQL, Nginx)
+- Laravel 5.3 for back-end development
+- jQuery, SCSS, Gulp, Bootstrap 4 for front-end development
+
+
 ## 1. Clone the Repository
 
 To begin, clone the repository into your project directory:
@@ -69,13 +82,7 @@ php artisan key:generate
 php artisan migrate
 ```
 
-## 9. Optional. Install Node modules and prepare Assets
-
-```bash
-npm install
-```
-
-## 10. Check the Database
+## 9. Check the Database
 
 - Make sure port `7761` is available on your machine.
 - To ensure the database is properly configured, access the database check page using your `.env` credentials:
@@ -84,13 +91,19 @@ npm install
 http://localhost:7761/index.php
 ```
 
-## 11. Access the Web Application
+## 10. Access the Web Application
 
 - Make sure port `8080` is available on your machine.
 - Finally, access the Laravel application in your browser:
 
 ```text
 http://localhost:8080/
+```
+
+## 11. Optional. Install Node modules and prepare Assets
+
+```bash
+npm install
 ```
 
 ---
