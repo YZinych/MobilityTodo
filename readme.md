@@ -12,7 +12,7 @@ Technology Stack:
 - Laravel 5.3 for back-end development
 - jQuery, SCSS, Gulp, Bootstrap 4 for front-end development
 
-<a href="https://todoapp.travels-zone.com" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Live Demo</a>
+<a href="https://todoapp.travels-zone.com" target="_blank" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Live Demo</a>
 
 # Setup Instructions
 
